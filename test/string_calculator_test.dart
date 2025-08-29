@@ -85,4 +85,40 @@ void main() {
       },
     );
   });
+
+  group('Negative inputs', () {
+    final stringCalculator = StringCalculator();
+
+    test(
+      'Should throw error with single negative input and display the negative number',
+      () {
+        expect(
+          () => stringCalculator.add('1,-2,3'),
+          throwsA(
+            predicate(
+              (e) =>
+                  e is ArgumentError &&
+                  e.message == 'negative numbers not allowed -2',
+            ),
+          ),
+        );
+      },
+    );
+
+    test(
+      'Should throw error with multiple negative inputs and display all the negative numbers',
+      () {
+        expect(
+          () => stringCalculator.add('//;\n-1;2;-3;4;-5'),
+          throwsA(
+            predicate(
+              (e) =>
+                  e is ArgumentError &&
+                  e.message == 'negative numbers not allowed -1,-3,-5',
+            ),
+          ),
+        );
+      },
+    );
+  });
 }
