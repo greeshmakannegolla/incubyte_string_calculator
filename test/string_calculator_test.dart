@@ -44,7 +44,7 @@ void main() {
   group('Custom delimiter(s)', () {
     final stringCalculator = StringCalculator();
 
-    test('Should handle custom delimiter', () {
+    test('Should handle single custom delimiter', () {
       expect(stringCalculator.add('//;\n1;2'), 3);
     });
 
@@ -54,6 +54,22 @@ void main() {
         expect(stringCalculator.add('//|\n1|2,3\n4'), 10);
       },
     );
+
+    test('Should handle single custom delimiter of any length', () {
+      expect(stringCalculator.add('//[***]\n1***2***3'), 6);
+    });
+
+    test('Should handle multiple single-char delimiters', () {
+      expect(stringCalculator.add('//[*][%]\n1*2%3'), 6);
+    });
+
+    test('Should handle multiple multi-char delimiters', () {
+      expect(stringCalculator.add('//[**][%%]\n4**5%%6'), 15);
+    });
+
+    test('Should handle a mix of default and custom delimiters', () {
+      expect(stringCalculator.add('//[;]\n1;2,3\n4'), 10);
+    });
 
     test('Should throw error when custom delimiter line has no newline', () {
       expect(
