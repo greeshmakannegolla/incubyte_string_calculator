@@ -28,4 +28,16 @@ void main() {
       expect(stringCalculator.add(' 1, 2 , , 3 '), 6);
     });
   });
+
+  group('Newlines as delimiters', () {
+    final stringCalculator = StringCalculator();
+
+    test('Should handle single newline and commas', () {
+      expect(stringCalculator.add('1\n2,3'), 6);
+    });
+
+    test('Should handle multiple newlines and commas', () {
+      expect(stringCalculator.add('1\n2\n3,4'), 10);
+    });
+  });
 }
