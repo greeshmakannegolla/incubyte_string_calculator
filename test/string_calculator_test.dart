@@ -24,7 +24,7 @@ void main() {
       expect(stringCalculator.add("1,2,3,4"), equals(10));
     });
 
-    test('Should handle spaces and extra commas gracefully', () {
+    test('Should handle spaces and extra commas', () {
       expect(stringCalculator.add(' 1, 2 , , 3 '), 6);
     });
   });

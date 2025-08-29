@@ -19,7 +19,16 @@ class StringCalculator {
         throw ArgumentError('Invalid input: empty custom delimiter');
       }
 
-      delimiters.add(delimiterPattern);
+      final regex = RegExp(r'\[(.*?)\]');
+      final matches = regex.allMatches(delimiterPattern);
+
+      if (matches.isNotEmpty) {
+        for (final m in matches) {
+          delimiters.add(m.group(1)!);
+        }
+      } else {
+        delimiters.add(delimiterPattern);
+      }
       body = input.substring(delimiterEndIndex + 1);
     }
 
