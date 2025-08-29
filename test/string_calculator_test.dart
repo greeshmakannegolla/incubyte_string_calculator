@@ -16,4 +16,9 @@ void main() {
     final stringCalculator = StringCalculator();
     expect(stringCalculator.add("1,5"), equals(6));
   });
+
+  test('Should handle multiple numbers', () {
+    final stringCalculator = StringCalculator();
+    expect(stringCalculator.add("1,2,3,4"), equals(10));
+  });
 }
