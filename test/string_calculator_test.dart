@@ -54,5 +54,35 @@ void main() {
         expect(stringCalculator.add('//|\n1|2,3\n4'), 10);
       },
     );
+
+    test('Should throw error when custom delimiter line has no newline', () {
+      expect(
+        () => stringCalculator.add('//;123'),
+        throwsA(
+          predicate(
+            (e) =>
+                e is ArgumentError &&
+                e.message ==
+                    'Invalid input: custom delimiter line must end with \\n',
+          ),
+        ),
+      );
+    });
+
+    test(
+      'Should throw error when custom delimiter line has empty custom delimiter',
+      () {
+        expect(
+          () => stringCalculator.add('//\n1,2'),
+          throwsA(
+            predicate(
+              (e) =>
+                  e is ArgumentError &&
+                  e.message == 'Invalid input: empty custom delimiter',
+            ),
+          ),
+        );
+      },
+    );
   });
 }
