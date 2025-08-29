@@ -40,4 +40,19 @@ void main() {
       expect(stringCalculator.add('1\n2\n3,4'), 10);
     });
   });
+
+  group('Custom delimiter(s)', () {
+    final stringCalculator = StringCalculator();
+
+    test('Should handle custom delimiter', () {
+      expect(stringCalculator.add('//;\n1;2'), 3);
+    });
+
+    test(
+      'Should still accept commas and newlines along with custom delimiters',
+      () {
+        expect(stringCalculator.add('//|\n1|2,3\n4'), 10);
+      },
+    );
+  });
 }
