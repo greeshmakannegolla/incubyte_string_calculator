@@ -145,4 +145,11 @@ void main() {
     expect(stringCalculator.add('1000,1'), 1001);
     expect(stringCalculator.add('2000,3000,5'), 5);
   });
+
+  // Functional, but commented as usecase is not clear
+  // test('Check if all tests are executed', () {
+  //   final stringCalculator = StringCalculator();
+
+  //   expect(stringCalculator.getCalledCount(), 20);
+  // });
 }
