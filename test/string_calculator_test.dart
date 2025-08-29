@@ -29,7 +29,7 @@ void main() {
     });
   });
 
-  group('Newlines as delimiters', () {
+  group('Newlines as delimiters in addition to commas', () {
     final stringCalculator = StringCalculator();
 
     test('Should handle single newline and commas', () {
