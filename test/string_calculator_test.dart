@@ -121,4 +121,12 @@ void main() {
       },
     );
   });
+
+  test('Should ignore numbers bigger than 1000', () {
+    final stringCalculator = StringCalculator();
+
+    expect(stringCalculator.add('2,1001'), 2);
+    expect(stringCalculator.add('1000,1'), 1001);
+    expect(stringCalculator.add('2000,3000,5'), 5);
+  });
 }
