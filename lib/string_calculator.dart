@@ -24,9 +24,18 @@ class StringCalculator {
     }
 
     final pattern = RegExp(delimiters.map(_escapeForRegex).join('|'));
-    final parts = body.split(pattern);
+    final tokens = body.split(pattern);
 
-    int sum = parts
+    final nums = tokens.map(int.parse).toList();
+    final negatives = nums.where((n) => n < 0).toList();
+
+    if (negatives.isNotEmpty) {
+      throw ArgumentError(
+        'negative numbers not allowed ${negatives.join(',')}',
+      );
+    }
+
+    int sum = tokens
         .map((s) => s.trim())
         .where((s) => s.isNotEmpty)
         .map(int.parse)
